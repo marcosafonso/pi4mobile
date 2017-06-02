@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">VGO</string>
+    <string-array name="locais_array">
+        <item>Escolha o Local</item>
+        <item>Recepcao</item>
+        <item>Secretaria</item>
+        <item>Biblioteca</item>
+
+    </string-array>
 </resources>
