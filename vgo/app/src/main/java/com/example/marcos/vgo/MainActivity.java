@@ -9,9 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,21 +30,22 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText edtIdUsuario;
     private Button btnEnviar;
-    private TextView tvDados;
+    private TextView resultado;
     private Retrofit retrofit;
     private Retrofit retrofitRota;
     private ImageView mapa;
+
+    private List<String> locais = new ArrayList<String>();
+    private String local;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //
-//        btnEnviar = (Button) findViewById(R.id.btnEnviar);
-//        edtIdUsuario = (EditText) findViewById(R.id.edtIdUsuario);
-        tvDados = (TextView) findViewById(R.id.tvDados);
+        resultado = (TextView) findViewById(R.id.resultado);
         mapa = (ImageView) findViewById(R.id.imageView1);
+
         //controle giratorio
         final Spinner spinner = (Spinner) findViewById(R.id.locais_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -64,10 +69,12 @@ public class MainActivity extends AppCompatActivity {
                 if (item ==1) {
                     mapa.setImageResource(R.drawable.local1);
                 }
-                else if( item ==2 || item==3){
+                else if(item ==2 ){
                     mapa.setImageResource(R.drawable.local2);
                 }
-
+                else if(item==3){
+                    mapa.setImageResource(R.drawable.local3);
+                }
             }
         });
 
@@ -89,36 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
     }
 
-    //solicitar usuario
-    /*
-    private void solicitarUsuario() {
-        String idUsuario = edtIdUsuario.getText().toString();
-
-        VgoService service = retrofit.create(VgoService.class);
-
-        Call<Usuario> call = service.getUsuario(idUsuario);
-
-        call.enqueue(new Callback<Usuario>() {
-            @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                if (response.isSuccessful()) {
-                    Usuario usuario = response.body();
-
-                    String strUsuario = "Nome: " + usuario.getNome() + "\n" +
-                            "CPF: " + usuario.getCpf();
-
-                    tvDados.setText(strUsuario);
-                }
-            }
-
-            //            @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Falha na requisição", Toast.LENGTH_SHORT).show();
-            }
-        });
-        //
-    }//fim solicitarUsuario
-*/
 
     //solicitar Rota
     private void solicitarRota(int idLocal) {
@@ -136,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     String strRota = "Nome: " + rota.getNome() + "\n" +
                             "Descrição Rota: " + rota.getDescricao();
 
-                    tvDados.setText(strRota);
+                    resultado.setText(strRota);
                 }
             }
 

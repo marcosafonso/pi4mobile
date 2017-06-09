@@ -4,28 +4,28 @@ package com.example.marcos.vgo;
  */
 
 public class Usuario {
-    private String nome;
-    private String cpf;
+    private String usuario;
+    private String senha;
 
-    public Usuario(String nome, String cpf) {
-        this.setNome(nome);
-        this.setCpf(cpf);
+    public Usuario(String usuario, String cpf) {
+        this.setUsuario(usuario);
+        this.setSenha(senha);
     }
 
 
-    public String getNome() {
-        return nome;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getSenha() {
+        return usuario;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setSenha(String usuario) {
+        this.usuario = usuario;
     }
 }
